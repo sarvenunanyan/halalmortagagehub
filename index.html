@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VKZXHT4NCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VKZXHT4NCV');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halal Mortgage Hub — Islamic Finance Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a100d;
+    --surface: #0f1a14;
+    --card: #142019;
+    --border: #1e3328;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: #7a6030;
+    --teal: #2d7a5f;
+    --teal-light: #3da87f;
+    --text: #e8e2d4;
+    --text-muted: #8a8578;
+    --text-dim: #5a5550;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Geometric SVG Background ── */
+  .geo-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cpolygon points='60,10 110,35 110,85 60,110 10,85 10,35' fill='none' stroke='%23c9a84c' stroke-width='1'/%3E%3Cpolygon points='60,25 95,42 95,78 60,95 25,78 25,42' fill='none' stroke='%23c9a84c' stroke-width='0.5'/%3E%3Cline x1='60' y1='10' x2='60' y2='110' stroke='%23c9a84c' stroke-width='0.3'/%3E%3Cline x1='10' y1='35' x2='110' y2='85' stroke='%23c9a84c' stroke-width='0.3'/%3E%3Cline x1='110' y1='35' x2='10' y2='85' stroke='%23c9a84c' stroke-width='0.3'/%3E%3C/svg%3E");
+    background-size: 120px 120px;
+  }
+
+  /* ── Header ── */
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 0 40px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    background: rgba(10,16,13,0.85);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+  }
+
+  .logo-text span {
+    color: var(--text);
+    font-weight: 300;
+  }
+
+  nav {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+
+  nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold) !important;
+    padding: 8px 20px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--gold) !important;
+    color: var(--bg) !important;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 80px 20px 60px;
+  }
+
+  .hero-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.2s;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.4s;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero p {
+    margin-top: 20px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.6s;
+  }
+
+  /* ── Main Layout ── */
+  .main {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 28px;
+    align-items: start;
+  }
+
+  /* ── Calculator Card ── */
+  .calc-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.7s;
+  }
+
+  .calc-header {
+    padding: 28px 32px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .calc-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  /* Model Tabs */
+  .model-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--surface);
+    padding: 4px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+  }
+
+  .model-tab {
+    padding: 7px 16px;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .model-tab.active {
+    background: var(--gold);
+    color: var(--bg);
+    font-weight: 500;
+  }
+
+  /* Form */
+  .calc-form {
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-prefix {
+    position: absolute;
+    left: 14px;
+    color: var(--gold-dim);
+    font-size: 0.95rem;
+    pointer-events: none;
+  }
+
+  .input-suffix {
+    position: absolute;
+    right: 14px;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    pointer-events: none;
+  }
+
+  input[type="number"], select {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 13px 40px 13px 32px;
+    font-size: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    -moz-appearance: textfield;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+  input:focus, select:focus {
+    border-color: var(--gold-dim);
+    background: #182a1f;
+  }
+
+  select {
+    padding-left: 14px;
+    cursor: pointer;
+    appearance: none;
+  }
+
+  /* Range Slider */
+  .range-wrap {
+    margin-top: 4px;
+  }
+
+  input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 2px;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--gold);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.3);
+  }
+
+  .range-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+  }
+
+  /* Calculate Button */
+  .calc-btn {
+    grid-column: 1 / -1;
+    background: var(--gold);
+    color: var(--bg);
+    border: none;
+    padding: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .calc-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0);
+    transition: background 0.2s;
+  }
+
+  .calc-btn:hover { background: var(--gold-light); }
+  .calc-btn:active { transform: scale(0.99); }
+
+  /* Model Description */
+  .model-desc {
+    margin: 0 32px 24px;
+    padding: 14px 18px;
+    background: rgba(45,122,95,0.08);
+    border-left: 2px solid var(--teal);
+    border-radius: 0 2px 2px 0;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── Results Panel ── */
+  .results-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    position: sticky;
+    top: 20px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.9s;
+  }
+
+  .results-header {
+    padding: 22px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .results-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+  }
+
+  .results-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 8px var(--teal);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .results-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .result-main {
+    text-align: center;
+    padding: 20px 0 28px;
+  }
+
+  .result-main-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+
+  .result-main-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    transition: all 0.4s ease;
+  }
+
+  .result-main-sub {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-top: 8px;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 4px 0;
+  }
+
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(30,51,40,0.5);
+  }
+
+  .result-row:last-child { border-bottom: none; }
+
+  .result-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .result-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+  }
+
+  .result-value {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+    transition: all 0.4s ease;
+  }
+
+  .result-value.highlight { color: var(--teal-light); }
+
+  /* Breakdown Bar */
+  .breakdown {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .breakdown-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+
+  .bar-wrap {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .bar-legend {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+  }
+
+  .bar-legend span { display: flex; align-items: center; gap: 5px; }
+
+  .legend-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+
+  /* ── Info Cards below ── */
+  .info-section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 1.1s;
+  }
+
+  .info-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px 24px;
+    transition: border-color 0.2s;
+  }
+
+  .info-card:hover { border-color: var(--gold-dim); }
+
+  .info-icon {
+    width: 40px; height: 40px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(201,168,76,0.08);
+    border-radius: 3px;
+  }
+
+  .info-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: var(--gold);
+  }
+
+  .info-card p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ── Footer ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  footer a { color: var(--gold-dim); text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Empty state ── */
+  .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .empty-state svg {
+    opacity: 0.2;
+    margin-bottom: 12px;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    header { padding: 0 20px; }
+    nav { gap: 16px; }
+    nav a:not(.nav-cta) { display: none; }
+    .main { grid-template-columns: 1fr; }
+    .results-card { position: static; }
+    .calc-form { grid-template-columns: 1fr; }
+    .info-section { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="geo-bg"></div>
+
+<!-- Header -->
+<header>
+  <div class="logo">
+    <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="18,3 33,10.5 33,25.5 18,33 3,25.5 3,10.5" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+      <polygon points="18,8 28,13 28,23 18,28 8,23 8,13" fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.5"/>
+      <circle cx="18" cy="18" r="4" fill="#c9a84c" opacity="0.8"/>
+      <line x1="18" y1="3" x2="18" y2="8" stroke="#c9a84c" stroke-width="0.8"/>
+      <line x1="18" y1="28" x2="18" y2="33" stroke="#c9a84c" stroke-width="0.8"/>
+    </svg>
+    <span class="logo-text">Halal<span>MortgageHub</span></span>
+  </div>
+  <nav>
+    <a href="index.html">Calculator</a>
+    <a href="blog-halal-mortgage-uk.html">Providers</a>
+    <a href="blog-what-is-halal-mortgage.html">Learn</a>
+    <a href="contact.html" class="nav-cta">Get Advice</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <p class="hero-label">Sharia-Compliant Finance Tools</p>
+  <h1>Calculate Your<br><em>Halal Mortgage</em></h1>
+  <p>Estimate monthly payments for Ijara, Murabaha, and Diminishing Musharaka — without interest (riba).</p>
+</div>
+
+<!-- Main Grid -->
+<div class="main">
+
+  <!-- Calculator -->
+  <div class="calc-card">
+    <div class="calc-header">
+      <h2>Payment Calculator</h2>
+      <div class="model-tabs">
+        <button class="model-tab active" onclick="setModel('ijara', this)">Ijara</button>
+        <button class="model-tab" onclick="setModel('murabaha', this)">Murabaha</button>
+        <button class="model-tab" onclick="setModel('musharaka', this)">Musharaka</button>
+      </div>
+    </div>
+
+    <div class="model-desc" id="modelDesc">
+      <strong style="color:var(--text-muted)">Ijara (Lease-to-Own):</strong> The bank purchases the property and leases it to you. Each payment covers rent + gradual ownership transfer. No interest — only a profit rate.
+    </div>
+
+    <div class="calc-form">
+      <div class="field">
+        <label>Property Value</label>
+        <div class="input-wrap">
+          <span class="input-prefix">£</span>
+          <input type="number" id="propertyValue" value="350000" min="50000" max="5000000" step="5000" oninput="syncRange('propertyValue', 'propRange'); calculate()">
+        </div>
+        <div class="range-wrap">
+          <input type="range" id="propRange" min="50000" max="2000000" step="5000" value="350000" oninput="syncInput('propRange', 'propertyValue'); calculate()">
+          <div class="range-labels"><span>£50k</span><span>£2M</span></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Deposit</label>
+        <div class="input-wrap">
+          <span class="input-prefix">£</span>
+          <input type="number" id="deposit" value="70000" min="0" max="2000000" step="1000" oninput="calculate()">
+        </div>
+        <div class="range-wrap">
+          <input type="range" id="depRange" min="0" max="500000" step="1000" value="70000" oninput="syncInput('depRange', 'deposit'); calculate()">
+          <div class="range-labels"><span>£0</span><span>£500k</span></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Finance Term</label>
+        <div class="input-wrap">
+          <input type="number" id="term" value="25" min="5" max="35" step="1" oninput="syncRange('term', 'termRange'); calculate()" style="padding-left:14px">
+          <span class="input-suffix">years</span>
+        </div>
+        <div class="range-wrap">
+          <input type="range" id="termRange" min="5" max="35" step="1" value="25" oninput="syncInput('termRange', 'term'); calculate()">
+          <div class="range-labels"><span>5yr</span><span>35yr</span></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Profit Rate (APR equiv.)</label>
+        <div class="input-wrap">
+          <input type="number" id="rate" value="4.5" min="0.1" max="15" step="0.05" oninput="syncRange('rate', 'rateRange'); calculate()" style="padding-left:14px">
+          <span class="input-suffix">% p.a.</span>
+        </div>
+        <div class="range-wrap">
+          <input type="range" id="rateRange" min="0.1" max="12" step="0.05" value="4.5" oninput="syncInput('rateRange', 'rate'); calculate()">
+          <div class="range-labels"><span>0.1%</span><span>12%</span></div>
+        </div>
+      </div>
+
+      <div class="field full">
+        <label>Country</label>
+        <select id="country" onchange="calculate()">
+          <option value="uk">🇬🇧 United Kingdom</option>
+          <option value="us">🇺🇸 United States</option>
+          <option value="ca">🇨🇦 Canada</option>
+          <option value="au">🇦🇺 Australia</option>
+          <option value="my">🇲🇾 Malaysia</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="results-card">
+    <div class="results-header">
+      <div class="results-dot"></div>
+      <h3>Your Estimate</h3>
+    </div>
+    <div class="results-body" id="resultsBody">
+      <div class="result-main">
+        <div class="result-main-label">Monthly Payment</div>
+        <div class="result-main-value" id="monthly">—</div>
+        <div class="result-main-sub" id="monthlySub">Enter values to calculate</div>
+      </div>
+      <div class="divider"></div>
+      <div class="result-row">
+        <span class="result-label"><span class="result-dot"></span>Finance Amount</span>
+        <span class="result-value" id="financeAmt">—</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label"><span class="result-dot"></span>Total Amount Payable</span>
+        <span class="result-value" id="totalPayable">—</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label"><span class="result-dot"></span>Total Profit Paid</span>
+        <span class="result-value highlight" id="totalProfit">—</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label"><span class="result-dot"></span>Deposit (LTV)</span>
+        <span class="result-value" id="ltv">—</span>
+      </div>
+
+      <div class="breakdown" id="breakdownSection" style="display:none">
+        <div class="breakdown-label">Capital vs Profit Split</div>
+        <div class="bar-wrap">
+          <div class="bar-fill" id="barFill" style="width:0%"></div>
+        </div>
+        <div class="bar-legend">
+          <span><span class="legend-dot" style="background:var(--teal)"></span><span id="capitalPct">—</span> Capital</span>
+          <span><span class="legend-dot" style="background:var(--gold)"></span><span id="profitPct">—</span> Profit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Info Cards -->
+<div class="info-section">
+  <div class="info-card">
+    <div class="info-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    <h4>Ijara (Lease-to-Own)</h4>
+    <p>The bank buys the property, then leases it to you. Ownership gradually transfers with each payment. Pure rental income — no compound interest involved.</p>
+  </div>
+  <div class="info-card">
+    <div class="info-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round">
+        <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="16"/>
+      </svg>
+    </div>
+    <h4>Murabaha (Cost-Plus)</h4>
+    <p>The bank purchases the property and sells it to you at an agreed markup. You pay in instalments. The profit margin is fixed upfront — fully transparent.</p>
+  </div>
+  <div class="info-card">
+    <div class="info-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round">
+        <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+      </svg>
+    </div>
+    <h4>Diminishing Musharaka</h4>
+    <p>You and the bank co-own the property. You gradually buy the bank's share over time. As your ownership grows, your rental portion decreases — fair and equitable.</p>
+  </div>
+</div>
+
+<!-- Footer -->
+<!-- ── Blog Section ── -->
+<div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 80px;">
+  <div style="text-align:center;margin-bottom:40px;">
+    <p style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Learn</p>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--text);">Islamic Finance <em style="font-style:italic;color:var(--gold);">Guides</em></h2>
+    <p style="margin-top:12px;color:var(--text-muted);font-size:0.92rem;max-width:480px;margin-left:auto;margin-right:auto;">Everything you need to know about halal mortgages — explained clearly.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+
+    <a href="blog-what-is-halal-mortgage.html" style="text-decoration:none;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;transition:border-color 0.2s;cursor:pointer;" onmouseover="this.style.borderColor='var(--gold-dim)'" onmouseout="this.style.borderColor='var(--border)'">
+        <p style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Beginner's Guide</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--text);margin-bottom:10px;line-height:1.4;">What is a Halal Mortgage? Complete Guide 2025</h3>
+        <p style="font-size:0.83rem;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">Everything you need to know about Sharia-compliant home finance — how it works and who it's for.</p>
+        <span style="font-size:0.78rem;color:var(--gold);">Read guide →</span>
+      </div>
+    </a>
+
+    <a href="blog-ijara-vs-murabaha-vs-musharaka.html" style="text-decoration:none;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold-dim)'" onmouseout="this.style.borderColor='var(--border)'">
+        <p style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Comparison Guide</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--text);margin-bottom:10px;line-height:1.4;">Ijara vs Murabaha vs Musharaka: Which is Right for You?</h3>
+        <p style="font-size:0.83rem;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">A detailed breakdown of the three main halal mortgage structures with pros, cons and comparisons.</p>
+        <span style="font-size:0.78rem;color:var(--gold);">Read guide →</span>
+      </div>
+    </a>
+
+    <a href="blog-halal-mortgage-uk.html" style="text-decoration:none;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold-dim)'" onmouseout="this.style.borderColor='var(--border)'">
+        <p style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">🇬🇧 United Kingdom</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--text);margin-bottom:10px;line-height:1.4;">Best Halal Mortgage Providers in the UK — 2025</h3>
+        <p style="font-size:0.83rem;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">Al Rayan, Gatehouse, Ahli United and more — every major UK Islamic mortgage provider reviewed.</p>
+        <span style="font-size:0.78rem;color:var(--gold);">Read guide →</span>
+      </div>
+    </a>
+
+    <a href="blog-first-time-buyers.html" style="text-decoration:none;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold-dim)'" onmouseout="this.style.borderColor='var(--border)'">
+        <p style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">First Time Buyers</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--text);margin-bottom:10px;line-height:1.4;">Halal Mortgage for First Time Buyers — Complete Guide 2025</h3>
+        <p style="font-size:0.83rem;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">Deposits, government schemes, step-by-step process and top tips for buying your first home the halal way.</p>
+        <span style="font-size:0.78rem;color:var(--gold);">Read guide →</span>
+      </div>
+    </a>
+
+    <a href="blog-halal-mortgage-usa.html" style="text-decoration:none;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold-dim)'" onmouseout="this.style.borderColor='var(--border)'">
+        <p style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">🇺🇸 United States</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--text);margin-bottom:10px;line-height:1.4;">Best Halal Mortgage Providers in the USA — 2025</h3>
+        <p style="font-size:0.83rem;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">Guidance Residential, UIF, Ameen Housing and more — the complete guide for American Muslim buyers.</p>
+        <span style="font-size:0.78rem;color:var(--gold);">Read guide →</span>
+      </div>
+    </a>
+
+    <a href="blog-bad-credit.html" style="text-decoration:none;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold-dim)'" onmouseout="this.style.borderColor='var(--border)'">
+        <p style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Credit Guide</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--text);margin-bottom:10px;line-height:1.4;">Can I Get a Halal Mortgage With Bad Credit? (2025)</h3>
+        <p style="font-size:0.83rem;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">How credit scores affect your application, which issues matter most, and how to improve your chances.</p>
+        <span style="font-size:0.78rem;color:var(--gold);">Read guide →</span>
+      </div>
+    </a>
+
+    <a href="blog-self-employed.html" style="text-decoration:none;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold-dim)'" onmouseout="this.style.borderColor='var(--border)'">
+        <p style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Self Employed</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--text);margin-bottom:10px;line-height:1.4;">Halal Mortgage for Self Employed — Complete Guide 2025</h3>
+        <p style="font-size:0.83rem;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">What documents you need, how providers assess self-employed income, and tips to maximise approval chances.</p>
+        <span style="font-size:0.78rem;color:var(--gold);">Read guide →</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 HalalMortgageHub.com — For informational purposes only. Not financial advice.</p>
+  <p>Always consult a qualified Islamic finance scholar. <a href="#">Disclaimer</a></p>
+</footer>
+
+<script>
+  let currentModel = 'ijara';
+
+  const modelDescriptions = {
+    ijara: '<strong style="color:var(--text-muted)">Ijara (Lease-to-Own):</strong> The bank purchases the property and leases it to you. Each payment covers rent + gradual ownership transfer. No interest — only a profit rate.',
+    murabaha: '<strong style="color:var(--text-muted)">Murabaha (Cost-Plus Sale):</strong> The bank buys the property and sells it to you at a pre-agreed marked-up price. Payments are fixed instalments of this total sale price.',
+    musharaka: '<strong style="color:var(--text-muted)">Diminishing Musharaka (Co-ownership):</strong> You and the bank jointly own the property. You buy the bank\'s share in units over time, paying rent only on the portion you don\'t yet own.'
+  };
+
+  const currencies = { uk: '£', us: '$', ca: 'CA$', au: 'A$', my: 'RM' };
+
+  function setModel(model, btn) {
+    currentModel = model;
+    document.querySelectorAll('.model-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('modelDesc').innerHTML = modelDescriptions[model];
+    calculate();
+  }
+
+  function syncRange(inputId, rangeId) {
+    const v = parseFloat(document.getElementById(inputId).value);
+    if (!isNaN(v)) document.getElementById(rangeId).value = v;
+  }
+
+  function syncInput(rangeId, inputId) {
+    document.getElementById(inputId).value = document.getElementById(rangeId).value;
+  }
+
+  function fmt(num, currency) {
+    if (num >= 1000000) return currency + (num/1000000).toFixed(2) + 'M';
+    if (num >= 1000) return currency + Math.round(num).toLocaleString();
+    return currency + num.toFixed(0);
+  }
+
+  function animateValue(el, newText) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(6px)';
+    setTimeout(() => {
+      el.textContent = newText;
+      el.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 120);
+  }
+
+  function calculate() {
+    const propVal = parseFloat(document.getElementById('propertyValue').value) || 0;
+    const dep     = parseFloat(document.getElementById('deposit').value) || 0;
+    const term    = parseFloat(document.getElementById('term').value) || 25;
+    const rate    = parseFloat(document.getElementById('rate').value) || 4.5;
+    const country = document.getElementById('country').value;
+    const cur     = currencies[country] || '£';
+
+    const finance = propVal - dep;
+    if (finance <= 0 || propVal <= 0) return;
+
+    const r = rate / 100 / 12;
+    const n = term * 12;
+    let monthly, totalPayable;
+
+    if (currentModel === 'murabaha') {
+      // Fixed markup total
+      const totalMarkup = finance * (rate / 100) * term;
+      totalPayable = finance + totalMarkup;
+      monthly = totalPayable / n;
+    } else {
+      // Standard amortisation (used for both Ijara and Musharaka as approximation)
+      if (r === 0) {
+        monthly = finance / n;
+      } else {
+        monthly = finance * (r * Math.pow(1+r, n)) / (Math.pow(1+r, n) - 1);
+      }
+      totalPayable = monthly * n;
+    }
+
+    const totalProfit = totalPayable - finance;
+    const ltv = ((dep / propVal) * 100).toFixed(1);
+    const capitalPct = Math.round((finance / totalPayable) * 100);
+    const profitPct = 100 - capitalPct;
+
+    animateValue(document.getElementById('monthly'), cur + Math.round(monthly).toLocaleString());
+    document.getElementById('monthlySub').textContent = `over ${term} years · ${rate}% profit rate`;
+
+    animateValue(document.getElementById('financeAmt'), fmt(finance, cur));
+    animateValue(document.getElementById('totalPayable'), fmt(totalPayable, cur));
+    animateValue(document.getElementById('totalProfit'), fmt(totalProfit, cur));
+    animateValue(document.getElementById('ltv'), ltv + '% deposit · ' + (100-ltv) + '% financed');
+
+    document.getElementById('breakdownSection').style.display = 'block';
+    document.getElementById('barFill').style.width = capitalPct + '%';
+    document.getElementById('capitalPct').textContent = capitalPct + '%';
+    document.getElementById('profitPct').textContent = profitPct + '%';
+  }
+
+  // Init
+  calculate();
+</script>
+</body>
+</html>

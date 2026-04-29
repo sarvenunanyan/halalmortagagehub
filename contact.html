@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VKZXHT4NCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VKZXHT4NCV');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — HalalMortgageHub</title>
+<meta name="description" content="Get in touch with HalalMortgageHub. We're here to help with questions about Sharia-compliant home finance.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0a100d; --surface:#0f1a14; --card:#142019; --border:#1e3328; --gold:#c9a84c; --gold-light:#e8c97a; --gold-dim:#7a6030; --teal:#2d7a5f; --teal-light:#3da87f; --text:#e8e2d4; --text-muted:#8a8578; --text-dim:#5a5550; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:300; }
+  .geo-bg { position:fixed; top:0; left:0; width:100%; height:100%; opacity:0.04; pointer-events:none; z-index:0; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cpolygon points='60,10 110,35 110,85 60,110 10,85 10,35' fill='none' stroke='%23c9a84c' stroke-width='1'/%3E%3Cpolygon points='60,25 95,42 95,78 60,95 25,78 25,42' fill='none' stroke='%23c9a84c' stroke-width='0.5'/%3E%3Cline x1='60' y1='10' x2='60' y2='110' stroke='%23c9a84c' stroke-width='0.3'/%3E%3Cline x1='10' y1='35' x2='110' y2='85' stroke='%23c9a84c' stroke-width='0.3'/%3E%3Cline x1='110' y1='35' x2='10' y2='85' stroke='%23c9a84c' stroke-width='0.3'/%3E%3C/svg%3E"); background-size:120px 120px; }
+  header { position:relative; z-index:10; padding:0 40px; height:72px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border); backdrop-filter:blur(12px); background:rgba(10,16,13,0.85); }
+  .logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .logo-text { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:400; letter-spacing:0.04em; color:var(--gold); }
+  .logo-text span { color:var(--text); font-weight:300; }
+  nav { display:flex; gap:32px; align-items:center; }
+  nav a { color:var(--text-muted); text-decoration:none; font-size:0.82rem; letter-spacing:0.06em; text-transform:uppercase; transition:color 0.2s; }
+  nav a:hover { color:var(--gold); }
+  .nav-cta { border:1px solid var(--gold-dim); color:var(--gold) !important; padding:8px 20px; border-radius:2px; }
+
+  .page-hero { position:relative; z-index:1; text-align:center; padding:80px 20px 60px; }
+  .hero-label { font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+  .page-hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,4vw,3.2rem); font-weight:300; color:var(--text); }
+  .page-hero h1 em { font-style:italic; color:var(--gold); }
+  .page-hero p { margin-top:18px; color:var(--text-muted); font-size:0.95rem; max-width:480px; margin-left:auto; margin-right:auto; line-height:1.8; }
+
+  .content { position:relative; z-index:1; max-width:860px; margin:0 auto; padding:0 24px 100px; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+
+  .contact-card { background:var(--card); border:1px solid var(--border); border-radius:4px; padding:36px; opacity:0; animation:fadeUp 0.7s ease forwards 0.3s; }
+  .contact-card h2 { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:400; color:var(--gold); margin-bottom:24px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+
+  .field { display:flex; flex-direction:column; gap:8px; margin-bottom:20px; }
+  .field:last-of-type { margin-bottom:0; }
+  label { font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); }
+  input, textarea, select { width:100%; background:var(--surface); border:1px solid var(--border); color:var(--text); padding:13px 16px; font-size:0.92rem; font-family:'DM Sans',sans-serif; font-weight:300; border-radius:2px; outline:none; transition:border-color 0.2s; }
+  input:focus, textarea:focus, select:focus { border-color:var(--gold-dim); background:#182a1f; }
+  textarea { resize:vertical; min-height:120px; line-height:1.6; }
+  select { cursor:pointer; appearance:none; }
+
+  .submit-btn { width:100%; background:var(--gold); color:var(--bg); border:none; padding:16px; font-family:'DM Sans',sans-serif; font-size:0.85rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; border-radius:2px; margin-top:24px; transition:background 0.2s; }
+  .submit-btn:hover { background:var(--gold-light); }
+
+  .success-msg { display:none; margin-top:16px; padding:14px 18px; background:rgba(45,122,95,0.1); border-left:2px solid var(--teal); color:var(--teal-light); font-size:0.85rem; border-radius:0 2px 2px 0; }
+
+  .info-col { display:flex; flex-direction:column; gap:20px; opacity:0; animation:fadeUp 0.7s ease forwards 0.5s; }
+  .info-card { background:var(--card); border:1px solid var(--border); border-radius:4px; padding:24px; transition:border-color 0.2s; }
+  .info-card:hover { border-color:var(--gold-dim); }
+  .info-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:400; color:var(--gold); margin-bottom:10px; }
+  .info-card p { font-size:0.84rem; color:var(--text-muted); line-height:1.7; }
+  .info-card a { color:var(--gold); text-decoration:none; }
+  .disclaimer-note { background:rgba(201,168,76,0.05); border:1px solid var(--border); border-radius:4px; padding:20px 22px; }
+  .disclaimer-note p { font-size:0.8rem; color:var(--text-dim); line-height:1.7; margin:0; }
+
+  footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:32px 40px; display:flex; justify-content:space-between; align-items:center; }
+  footer p { font-size:0.75rem; color:var(--text-dim); }
+  footer a { color:var(--gold-dim); text-decoration:none; }
+  footer a:hover { color:var(--gold); }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+  @media (max-width:768px) { header { padding:0 20px; } nav a:not(.nav-cta) { display:none; } .content { grid-template-columns:1fr; } footer { flex-direction:column; gap:12px; text-align:center; } }
+</style>
+</head>
+<body>
+<div class="geo-bg"></div>
+
+<header>
+  <a href="index.html" class="logo">
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <polygon points="18,3 33,10.5 33,25.5 18,33 3,25.5 3,10.5" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+      <polygon points="18,8 28,13 28,23 18,28 8,23 8,13" fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.5"/>
+      <circle cx="18" cy="18" r="4" fill="#c9a84c" opacity="0.8"/>
+    </svg>
+    <span class="logo-text">Halal<span>MortgageHub</span></span>
+  </a>
+  <nav>
+    <a href="index.html">Calculator</a>
+    <a href="about.html">About</a>
+    <a href="blog-what-is-halal-mortgage.html">Learn</a>
+    <a href="contact.html" class="nav-cta">Get Advice</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <p class="hero-label">Get In Touch</p>
+  <h1>We're Here to <em>Help</em></h1>
+  <p>Have a question about halal mortgages or our calculators? Send us a message and we'll get back to you as soon as possible.</p>
+</div>
+
+<div class="content">
+
+  <div class="contact-card">
+    <h2>Send a Message</h2>
+    <div class="field">
+      <label>Your Name</label>
+      <input type="text" id="name" placeholder="Ahmed Al-Hassan">
+    </div>
+    <div class="field">
+      <label>Email Address</label>
+      <input type="email" id="email" placeholder="ahmed@example.com">
+    </div>
+    <div class="field">
+      <label>Subject</label>
+      <select id="subject">
+        <option value="">Select a topic...</option>
+        <option>Question about calculator</option>
+        <option>Halal mortgage advice</option>
+        <option>Provider recommendation</option>
+        <option>Website feedback</option>
+        <option>Partnership enquiry</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Message</label>
+      <textarea id="message" placeholder="Tell us how we can help..."></textarea>
+    </div>
+    <button class="submit-btn" onclick="handleSubmit()">Send Message →</button>
+    <div class="success-msg" id="successMsg">
+      ✓ Thank you for your message. We'll be in touch within 2 business days.
+    </div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-card">
+      <h3>Response Time</h3>
+      <p>We aim to respond to all enquiries within <strong style="color:var(--text)">2 business days</strong>. For urgent matters, please indicate this in your subject line.</p>
+    </div>
+    <div class="info-card">
+      <h3>Email Us Directly</h3>
+      <p>You can also reach us at:<br><a href="mailto:hello@halalmortagagehub.com">hello@halalmortagagehub.com</a></p>
+    </div>
+    <div class="info-card">
+      <h3>Looking for Providers?</h3>
+      <p>If you're ready to speak to a halal mortgage provider directly, our <a href="index.html">calculator page</a> links to regulated providers in your country.</p>
+    </div>
+    <div class="disclaimer-note">
+      <p><strong style="color:var(--text-muted)">Please note:</strong> HalalMortgageHub is an educational resource. We cannot provide personalised financial or religious advice. For specific guidance, please consult a regulated financial adviser and an Islamic scholar.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 HalalMortgageHub.com — Educational resource. Not financial advice.</p>
+  <p><a href="privacy.html">Privacy Policy</a> · <a href="about.html">About</a></p>
+</footer>
+
+<script>
+function handleSubmit() {
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  if (!name || !email || !message) { alert('Please fill in all required fields.'); return; }
+  document.getElementById('successMsg').style.display = 'block';
+  document.querySelector('.submit-btn').disabled = true;
+  document.querySelector('.submit-btn').textContent = 'Message Sent ✓';
+  document.querySelector('.submit-btn').style.background = 'var(--teal)';
+}
+</script>
+</body>
+</html>
